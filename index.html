@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">CDSeq</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.9</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/kkang7/CDSeq_R_Package/">
+  <a href="https://github.com/kkang7/CDSeq_R_Package/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -81,95 +77,94 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="cdseq" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#cdseq" class="anchor"></a>CDSeq</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="cdseq">CDSeq<a class="anchor" aria-label="anchor" href="#cdseq"></a>
+</h1></div>
 <!-- badges: start -->
-
 <p>CDSeq is a complete deconvolution method for dissecting bulk RNA-Seq data. The input of CDSeq is, ideally, bulk RNA-Seq read counts (similar to the input format required by DESeq2), and CDSeq will estimate, simultaneously, the cell-type-specific gene expression profiles and the sample-specific cell-type proportions, no reference of pure cell line GEPs or scRNAseq reference is needed for running CDSeq.</p>
 <p>For example, if you have a bulk RNA-Seq data, a G by M matrix <strong>A</strong>, which is a G by M matrix. G denotes the number of genes and M is the sample size, then CDSeq will output <strong>B</strong> (a G by T matrix) and <strong>C</strong> (a T by M matrix), where T is the number of cell types, <strong>B</strong> is the estimate of cell-type-specific GEPs and <strong>C</strong> is the estimate of sample-specific cell-type proportions.</p>
-<p>Importantly, you can ask CDSeq to estimate the number of cell types, i.e. T, by providing a vector of possible integer values for T. For example, if the user input for T is a vector, i.e. <span class="math inline"><em>T</em> = {2, 3, 4, 5, 6}</span>, then CDSeq will estimate the most likely number for T.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of CDSeq from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<p>Importantly, you can ask CDSeq to estimate the number of cell types, i.e. T, by providing a vector of possible integer values for T. For example, if the user input for T is a vector, i.e. (T={2,3,4,5,6}), then CDSeq will estimate the most likely number for T.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the released version of CDSeq from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"CDSeq"</span><span class="op">)</span></code></pre></div>
-<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"CDSeq"</span><span class="op">)</span></span></code></pre></div>
+<p>And the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"kkang7/CDSeq_R_Package"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"kkang7/CDSeq_R_Package"</span><span class="op">)</span></span></code></pre></div>
 <p>build the vignette with</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"kkang7/CDSeq_R_Package"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"kkang7/CDSeq_R_Package"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="known-issue-about-macos-installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#known-issue-about-macos-installation" class="anchor"></a>Known issue about MacOS installation</h2>
-<p>It is possible for Mac users to run into some errors when install from source due to problems of Rcpp compiler tools. Follow the instruction here may help: <a href="https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/" class="uri">https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/</a></p>
+<div class="section level2">
+<h2 id="known-issue-about-macos-installation">Known issue about MacOS installation<a class="anchor" aria-label="anchor" href="#known-issue-about-macos-installation"></a>
+</h2>
+<p>It is possible for Mac users to run into some errors when install from source due to problems of Rcpp compiler tools. Follow the instruction here may help: <a href="https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/" class="external-link uri">https://thecoatlessprofessor.com/programming/cpp/r-compiler-tools-for-rcpp-on-macos/</a></p>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <p>Load package</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/kkang7/CDSeq_R_Package">CDSeq</a></span><span class="op">)</span></code></pre></div>
-<div id="when-the-number-of-cell-types-is-a-scalar" class="section level3">
-<h3 class="hasAnchor">
-<a href="#when-the-number-of-cell-types-is-a-scalar" class="anchor"></a>When the number of cell types is a scalar</h3>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/kkang7/CDSeq_R_Package" class="external-link">CDSeq</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="when-the-number-of-cell-types-is-a-scalar">When the number of cell types is a scalar<a class="anchor" aria-label="anchor" href="#when-the-number-of-cell-types-is-a-scalar"></a>
+</h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## basic example code</span>
-<span class="va">result1</span><span class="op">&lt;-</span><span class="fu"><a href="reference/CDSeq.html">CDSeq</a></span><span class="op">(</span>bulk_data <span class="op">=</span>  <span class="va">mixtureGEP</span>, 
-               cell_type_number <span class="op">=</span> <span class="fl">6</span>, 
-               mcmc_iterations <span class="op">=</span> <span class="fl">5</span>, <span class="co"># increase the mcmc_iterations to 700 or above</span>
-               gene_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">gene_length</span><span class="op">)</span>, 
-               reference_gep <span class="op">=</span> <span class="va">refGEP</span>,  <span class="co"># gene expression profile of pure cell lines</span>
-               cpu_number <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## basic example code</span></span>
+<span><span class="va">result1</span><span class="op">&lt;-</span><span class="fu"><a href="reference/CDSeq.html">CDSeq</a></span><span class="op">(</span>bulk_data <span class="op">=</span>  <span class="va">mixtureGEP</span>, </span>
+<span>               cell_type_number <span class="op">=</span> <span class="fl">6</span>, </span>
+<span>               mcmc_iterations <span class="op">=</span> <span class="fl">5</span>, <span class="co"># increase the mcmc_iterations to 700 or above</span></span>
+<span>               gene_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">gene_length</span><span class="op">)</span>, </span>
+<span>               reference_gep <span class="op">=</span> <span class="va">refGEP</span>,  <span class="co"># gene expression profile of pure cell lines</span></span>
+<span>               cpu_number <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="when-the-number-of-cell-types-is-a-vector" class="section level3">
-<h3 class="hasAnchor">
-<a href="#when-the-number-of-cell-types-is-a-vector" class="anchor"></a>When the number of cell types is a vector</h3>
+<div class="section level3">
+<h3 id="when-the-number-of-cell-types-is-a-vector">When the number of cell types is a vector<a class="anchor" aria-label="anchor" href="#when-the-number-of-cell-types-is-a-vector"></a>
+</h3>
 <p>The <em>cell_type_number</em> can also be a vector which contains different integer values. CDSeq will perform estimation for each integer in the vector and estimate the number of cell types in the mixtures. For example, one can set <em>cell_type_number = 2:10</em> as follows, and CDSeq will estimate the most likely number of cell types from 2 to 10.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">result2</span><span class="op">&lt;-</span><span class="fu"><a href="reference/CDSeq.html">CDSeq</a></span><span class="op">(</span>bulk_data <span class="op">=</span>  <span class="va">mixtureGEP</span>, 
-              cell_type_number <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, 
-              mcmc_iterations <span class="op">=</span> <span class="fl">5</span>, 
-              dilution_factor <span class="op">=</span> <span class="fl">1</span>, 
-              block_number <span class="op">=</span> <span class="fl">1</span>, 
-              gene_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">gene_length</span><span class="op">)</span>, 
-              reference_gep <span class="op">=</span> <span class="va">refGEP</span>, <span class="co"># gene expression profile of pure cell lines</span>
-              cpu_number <span class="op">=</span> <span class="fl">1</span>, <span class="co"># use multiple cores to save time. Set the cpu_number = length(cell_type_number) if there is enough cores.</span>
-              print_progress_msg_to_file <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">result2</span><span class="op">&lt;-</span><span class="fu"><a href="reference/CDSeq.html">CDSeq</a></span><span class="op">(</span>bulk_data <span class="op">=</span>  <span class="va">mixtureGEP</span>, </span>
+<span>              cell_type_number <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, </span>
+<span>              mcmc_iterations <span class="op">=</span> <span class="fl">5</span>, </span>
+<span>              dilution_factor <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>              block_number <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>              gene_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">gene_length</span><span class="op">)</span>, </span>
+<span>              reference_gep <span class="op">=</span> <span class="va">refGEP</span>, <span class="co"># gene expression profile of pure cell lines</span></span>
+<span>              cpu_number <span class="op">=</span> <span class="fl">1</span>, <span class="co"># use multiple cores to save time. Set the cpu_number = length(cell_type_number) if there is enough cores.</span></span>
+<span>              print_progress_msg_to_file <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="use-single-cell-to-annotate-cdseq-estimated-cell-types" class="section level3">
-<h3 class="hasAnchor">
-<a href="#use-single-cell-to-annotate-cdseq-estimated-cell-types" class="anchor"></a>Use single cell to annotate CDSeq-estimated cell types</h3>
+<div class="section level3">
+<h3 id="use-single-cell-to-annotate-cdseq-estimated-cell-types">Use single cell to annotate CDSeq-estimated cell types<a class="anchor" aria-label="anchor" href="#use-single-cell-to-annotate-cdseq-estimated-cell-types"></a>
+</h3>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cdseq.result</span> <span class="op">&lt;-</span> <span class="fu">CDSeq</span><span class="fu">::</span><span class="fu"><a href="reference/CDSeq.html">CDSeq</a></span><span class="op">(</span>bulk_data <span class="op">=</span> <span class="va">pbmc_mix</span>,
-                             cell_type_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">12</span>,<span class="fl">3</span><span class="op">)</span>,
-                             beta <span class="op">=</span> <span class="fl">0.5</span>,
-                             alpha <span class="op">=</span> <span class="fl">5</span>,
-                             mcmc_iterations <span class="op">=</span> <span class="fl">700</span>,
-                             cpu_number <span class="op">=</span> <span class="fl">4</span>,
-                             dilution_factor <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-
-<span class="va">cdseq.result.celltypeassign</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cellTypeAssignSCRNA.html">cellTypeAssignSCRNA</a></span><span class="op">(</span>cdseq_gep <span class="op">=</span> <span class="va">cdseq.result</span><span class="op">$</span><span class="va">estGEP</span>, <span class="co"># CDSeq-estimated cell-type-specific GEPs</span>
-                                                   cdseq_prop <span class="op">=</span> <span class="va">cdseq.result</span><span class="op">$</span><span class="va">estProp</span>, <span class="co"># CDSeq-estimated cell type proportions</span>
-                                                   sc_gep <span class="op">=</span> <span class="va">sc_gep</span>,         <span class="co"># PBMC single cell data</span>
-                                                   sc_annotation <span class="op">=</span> <span class="va">sc_annotation</span>,<span class="co"># PBMC single data annotations</span>
-                                                   sc_pt_size <span class="op">=</span> <span class="fl">3</span>,
-                                                   cdseq_pt_size <span class="op">=</span> <span class="fl">6</span>,
-                                                   seurat_nfeatures <span class="op">=</span> <span class="fl">100</span>,
-                                                   seurat_npcs <span class="op">=</span> <span class="fl">50</span>,
-                                                   seurat_dims<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
-                                                   plot_umap <span class="op">=</span> <span class="fl">1</span>,
-                                                   plot_tsne <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cdseq.result</span> <span class="op">&lt;-</span> <span class="fu">CDSeq</span><span class="fu">::</span><span class="fu"><a href="reference/CDSeq.html">CDSeq</a></span><span class="op">(</span>bulk_data <span class="op">=</span> <span class="va">pbmc_mix</span>,</span>
+<span>                             cell_type_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">12</span>,<span class="fl">3</span><span class="op">)</span>,</span>
+<span>                             beta <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>                             alpha <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>                             mcmc_iterations <span class="op">=</span> <span class="fl">700</span>,</span>
+<span>                             cpu_number <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>                             dilution_factor <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cdseq.result.celltypeassign</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/cellTypeAssignSCRNA.html">cellTypeAssignSCRNA</a></span><span class="op">(</span>cdseq_gep <span class="op">=</span> <span class="va">cdseq.result</span><span class="op">$</span><span class="va">estGEP</span>, <span class="co"># CDSeq-estimated cell-type-specific GEPs</span></span>
+<span>                                                   cdseq_prop <span class="op">=</span> <span class="va">cdseq.result</span><span class="op">$</span><span class="va">estProp</span>, <span class="co"># CDSeq-estimated cell type proportions</span></span>
+<span>                                                   sc_gep <span class="op">=</span> <span class="va">sc_gep</span>,         <span class="co"># PBMC single cell data</span></span>
+<span>                                                   sc_annotation <span class="op">=</span> <span class="va">sc_annotation</span>,<span class="co"># PBMC single data annotations</span></span>
+<span>                                                   sc_pt_size <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>                                                   cdseq_pt_size <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>                                                   seurat_nfeatures <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>                                                   seurat_npcs <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>                                                   seurat_dims<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span>
+<span>                                                   plot_umap <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                                                   plot_tsne <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="setting-recommendations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#setting-recommendations" class="anchor"></a>Setting recommendations</h2>
+<div class="section level2">
+<h2 id="setting-recommendations">Setting recommendations<a class="anchor" aria-label="anchor" href="#setting-recommendations"></a>
+</h2>
 <p>We provide recommendations for parameter settings. Note that these recommendations are merely emperical and there is no theoretical justifications yet. User can tune the parameters based on specific applications and domain knowledges.</p>
 <table class="table">
 <thead><tr class="header">
@@ -205,9 +200,9 @@
 </table>
 <p>Check vignette for more details and examples: <em>browseVignettes(“CDSeq”)</em>.</p>
 </div>
-<div id="contact" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contact" class="anchor"></a>Contact</h2>
+<div class="section level2">
+<h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
+</h2>
 <p>email: <a href="mailto:kangkai0714@gmail.com" class="email">kangkai0714@gmail.com</a></p>
 </div>
 </div>
@@ -215,54 +210,58 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=CDSeq">https://​cloud.r-project.org/​package=CDSeq</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/kkang7/CDSeq_R_Package/">https://​github.com/​kkang7/​CDSeq_R_Package/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/kkang7/CDSeq_R_Package/issues">https://​github.com/​kkang7/​CDSeq_R_Package/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=CDSeq" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/kkang7/CDSeq_R_Package/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/kkang7/CDSeq_R_Package/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing CDSeq</a></li>
+<li><a href="authors.html#citation">Citing CDSeq</a></li>
 </ul>
 </div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Kai Kang <br><small class="roles"> Author, maintainer, copyright holder </small>  </li>
 <li>Caizhi Huang <br><small class="roles"> Author </small>  </li>
 <li>Leping Li <br><small class="roles"> Author, copyright holder </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.com/kkang7/CDSeq_R_Package"><img src="https://travis-ci.com/kkang7/CDSeq_R_Package.svg?branch=master" alt="Travis build status"></a></li>
+<li><a href="https://travis-ci.com/kkang7/CDSeq_R_Package" class="external-link"><img src="https://travis-ci.com/kkang7/CDSeq_R_Package.svg?branch=master" alt="Travis build status"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Kai Kang, Caizhi Huang, Leping Li.</p>
+  <p></p>
+<p>Developed by Kai Kang, Caizhi Huang, Leping Li.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -270,6 +269,8 @@
 
   
 
+
+  
 
   </body>
 </html>
